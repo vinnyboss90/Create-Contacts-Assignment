@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, send_from_directory
 from config import app, db
 from models import Contact
 
@@ -61,6 +61,11 @@ def delete_contact(user_id):
 
     return jsonify({"message": "User deleted!"}), 200
 
+@app.route('/')
+def serve_react_app():
+    return send_from_directory('path_to_your_react_build_directory', 'index.html')
+
+# Add more routes/API endpoints as needed
 
 if __name__ == "__main__":
     with app.app_context():
